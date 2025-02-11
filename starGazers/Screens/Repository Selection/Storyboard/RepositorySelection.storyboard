@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fh3-gZ-83k">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Repository Selection View Controller-->
+        <scene sceneID="mGy-VS-gZ1">
+            <objects>
+                <viewController storyboardIdentifier="RepositorySelectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="Fh3-gZ-83k" customClass="RepositorySelectionViewController" customModule="starGazers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EyV-JK-nZm">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9J-AQ-fL4">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZ1-7Q-aid" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="398"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPE-dN-dZW">
+                                                <rect key="frame" x="15" y="50" width="363" height="318"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert repository name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qfk-g8-bkP">
+                                                        <rect key="frame" x="15" y="56.666666666666657" width="333" height="34"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="repoNameTextField"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="username"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert repository owner" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="218-1a-G1N">
+                                                        <rect key="frame" x="15" y="167" width="333" height="34"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="repoOwnerTextField"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="username"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repository name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGv-RH-Yki">
+                                                        <rect key="frame" x="15" y="20" width="333" height="26.666666666666671"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="repoNameLable"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                        <color key="textColor" name="FrontOrange"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z34-4T-y2G">
+                                                        <rect key="frame" x="15" y="130.66666666666666" width="333" height="26.333333333333343"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="repoOwnerLabel"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                        <color key="textColor" name="FrontOrange"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dM-ec-aFd">
+                                                        <rect key="frame" x="128" y="241" width="107" height="47"/>
+                                                        <color key="backgroundColor" name="FrontOrange"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="confirmButton"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="contentEdgeInsets" minX="15" minY="10" maxX="15" maxY="10"/>
+                                                        <state key="normal" title="Confirm"/>
+                                                        <connections>
+                                                            <action selector="submitRepoDetails" destination="Fh3-gZ-83k" eventType="touchUpInside" id="NaB-rT-lCQ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" name="BackGrey"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="repoDetailsView"/>
+                                                <constraints>
+                                                    <constraint firstItem="z34-4T-y2G" firstAttribute="leading" secondItem="DPE-dN-dZW" secondAttribute="leading" constant="15" id="2A7-ai-Vw2"/>
+                                                    <constraint firstAttribute="bottom" secondItem="9dM-ec-aFd" secondAttribute="bottom" constant="30" id="2sg-4D-nyH"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9dM-ec-aFd" secondAttribute="trailing" constant="15" id="AFq-m5-dDB"/>
+                                                    <constraint firstAttribute="trailing" secondItem="z34-4T-y2G" secondAttribute="trailing" constant="15" id="DMb-NQ-7Kw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qfk-g8-bkP" secondAttribute="trailing" constant="15" id="Djq-K3-93G"/>
+                                                    <constraint firstItem="9dM-ec-aFd" firstAttribute="centerX" secondItem="DPE-dN-dZW" secondAttribute="centerX" id="Goy-GI-7Ig"/>
+                                                    <constraint firstItem="9dM-ec-aFd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DPE-dN-dZW" secondAttribute="leading" constant="15" id="HLG-Ns-Vnx"/>
+                                                    <constraint firstItem="qfk-g8-bkP" firstAttribute="top" secondItem="TGv-RH-Yki" secondAttribute="bottom" constant="10" id="Wk6-5Q-unr"/>
+                                                    <constraint firstItem="218-1a-G1N" firstAttribute="leading" secondItem="DPE-dN-dZW" secondAttribute="leading" constant="15" id="Yg5-Mk-I9p"/>
+                                                    <constraint firstItem="9dM-ec-aFd" firstAttribute="top" secondItem="218-1a-G1N" secondAttribute="bottom" constant="40" id="c6b-Ne-1BN"/>
+                                                    <constraint firstItem="TGv-RH-Yki" firstAttribute="leading" secondItem="DPE-dN-dZW" secondAttribute="leading" constant="15" id="lS0-Np-2dO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="TGv-RH-Yki" secondAttribute="trailing" constant="15" id="mjS-n5-wgg"/>
+                                                    <constraint firstItem="qfk-g8-bkP" firstAttribute="leading" secondItem="DPE-dN-dZW" secondAttribute="leading" constant="15" id="qCY-3c-Gst"/>
+                                                    <constraint firstItem="218-1a-G1N" firstAttribute="top" secondItem="z34-4T-y2G" secondAttribute="bottom" constant="10" id="quc-uI-giB"/>
+                                                    <constraint firstItem="z34-4T-y2G" firstAttribute="top" secondItem="qfk-g8-bkP" secondAttribute="bottom" constant="40" id="r0D-DH-8R8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="218-1a-G1N" secondAttribute="trailing" constant="15" id="uCN-kJ-EOQ"/>
+                                                    <constraint firstItem="TGv-RH-Yki" firstAttribute="top" secondItem="DPE-dN-dZW" secondAttribute="top" constant="20" id="uuO-9t-Z3P"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="contentView"/>
+                                        <constraints>
+                                            <constraint firstItem="DPE-dN-dZW" firstAttribute="leading" secondItem="oZ1-7Q-aid" secondAttribute="leading" constant="15" id="AGt-22-eYh"/>
+                                            <constraint firstAttribute="trailing" secondItem="DPE-dN-dZW" secondAttribute="trailing" constant="15" id="NHn-jM-z5Z"/>
+                                            <constraint firstAttribute="bottom" secondItem="DPE-dN-dZW" secondAttribute="bottom" constant="30" id="OGY-aU-cgq"/>
+                                            <constraint firstItem="DPE-dN-dZW" firstAttribute="top" secondItem="oZ1-7Q-aid" secondAttribute="top" constant="50" id="azz-dQ-6xZ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="oZ1-7Q-aid" firstAttribute="width" secondItem="YPd-Ce-gdP" secondAttribute="width" id="4zt-FL-wBk"/>
+                                    <constraint firstItem="oZ1-7Q-aid" firstAttribute="bottom" secondItem="ivB-gH-nnD" secondAttribute="bottom" id="KkP-2B-wuP"/>
+                                    <constraint firstItem="ivB-gH-nnD" firstAttribute="leading" secondItem="oZ1-7Q-aid" secondAttribute="leading" id="NrE-yL-jAa"/>
+                                    <constraint firstItem="oZ1-7Q-aid" firstAttribute="trailing" secondItem="ivB-gH-nnD" secondAttribute="trailing" id="fCE-iQ-FXn"/>
+                                    <constraint firstItem="oZ1-7Q-aid" firstAttribute="top" secondItem="ivB-gH-nnD" secondAttribute="top" id="rud-eZ-k20"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="ivB-gH-nnD"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="YPd-Ce-gdP"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SvC-4M-9tA"/>
+                        <color key="backgroundColor" name="BackLightGrey"/>
+                        <constraints>
+                            <constraint firstItem="G9J-AQ-fL4" firstAttribute="bottom" secondItem="SvC-4M-9tA" secondAttribute="bottom" id="E4h-ya-rzM"/>
+                            <constraint firstItem="G9J-AQ-fL4" firstAttribute="trailing" secondItem="SvC-4M-9tA" secondAttribute="trailing" id="Osg-ev-P8W"/>
+                            <constraint firstItem="G9J-AQ-fL4" firstAttribute="top" secondItem="SvC-4M-9tA" secondAttribute="top" id="c3A-IP-GnP"/>
+                            <constraint firstItem="G9J-AQ-fL4" firstAttribute="leading" secondItem="SvC-4M-9tA" secondAttribute="leading" id="dyQ-SS-XT1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="yOx-0L-aAJ"/>
+                    <connections>
+                        <outlet property="confirmButton" destination="9dM-ec-aFd" id="ccF-di-K7E"/>
+                        <outlet property="repoDetailsView" destination="DPE-dN-dZW" id="cgP-zJ-w8H"/>
+                        <outlet property="repoNameTextField" destination="qfk-g8-bkP" id="hAE-Ex-eHN"/>
+                        <outlet property="repoOwnerTextField" destination="218-1a-G1N" id="UsW-DZ-y8O"/>
+                        <outlet property="scrollView" destination="G9J-AQ-fL4" id="sVS-d7-9Ny"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8aM-RN-T4S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1928.985507246377" y="61.607142857142854"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="BackGrey">
+            <color red="0.097999997437000275" green="0.14900000393390656" blue="0.17299999296665192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BackLightGrey">
+            <color red="0.28499999642372131" green="0.28499999642372131" blue="0.30899998545646667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FrontOrange">
+            <color red="0.99599999189376831" green="0.68199998140335083" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
