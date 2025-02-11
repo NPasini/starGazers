@@ -7,12 +7,6 @@
 
 import Foundation
 
-struct GazersPage {
-    let pageNumber: Int
-    let repoName: String
-    let repoOwner: String
-}
-
 enum StarGazersEndpoint {
     case get(page: GazersPage)
     
@@ -22,10 +16,10 @@ enum StarGazersEndpoint {
             var components = URLComponents()
             components.scheme = "https"
             components.host = "api.github.com"
-            components.path = "repos/\(page.repoOwner)/\(page.repoName)/stargazers"
+            components.path = "/repos/\(page.repoOwner)/\(page.repoName)/stargazers"
             components.queryItems = [
                 URLQueryItem(name: "page", value: "\(page.pageNumber)"),
-                URLQueryItem(name: "per_page", value: "30")
+                URLQueryItem(name: "per_page", value: "10")
             ].compactMap { $0 }
             return components.url!
         }
