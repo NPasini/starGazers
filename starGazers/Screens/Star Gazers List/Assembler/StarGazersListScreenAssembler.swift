@@ -11,13 +11,14 @@ struct StarGazersListScreenAssembler {
     private static let starGazersListStoryboardName = "StarGazersList"
     
     private let httpClient: HTTPClientProtocol
+    private let navigationController: UINavigationController
     
     func assemble(repoName: String, repoOwner: String) -> UIViewController {
         let router = StarGazersListRouter()
         let presenter = StarGazersListPresenter(
             interactor: StarGazersListInteractor(
                 entity: .init(repoName: repoName, repoOwner: repoOwner),
-                httpClient: httpClient
+                dataSource: StarGazersDataSource(httpClient: httpClient)
             ),
             router: router
         )
@@ -32,14 +33,15 @@ struct StarGazersListScreenAssembler {
         }
         
         presenter.view = vc
-        router.setNavigationController(viewController?.navigationController)
+        router.setNavigationController(navigationController)
         
         return vc
     }
     
     // MARK: Initializers
     
-    init(httpClient: HTTPClientProtocol) {
+    init(httpClient: HTTPClientProtocol, navigationController: UINavigationController) {
         self.httpClient = httpClient
+        self.navigationController = navigationController
     }
 }

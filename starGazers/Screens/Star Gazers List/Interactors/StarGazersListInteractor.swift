@@ -6,14 +6,18 @@
 //
 
 class StarGazersListInteractor {
+    enum FetchError: Error {
+        case noMoreStarGazers
+    }
+    
     private var entity: StarGazersListEntity
-    private let httpClient: HTTPClientProtocol
+    private let dataSource: StarGazersDataSourceProtocol
     
     // MARK: Initializers
     
-    init(entity: StarGazersListEntity, httpClient: HTTPClientProtocol) {
+    init(entity: StarGazersListEntity, dataSource: StarGazersDataSourceProtocol) {
         self.entity = entity
-        self.httpClient = httpClient
+        self.dataSource = dataSource
     }
 }
 
@@ -26,8 +30,13 @@ extension StarGazersListInteractor: StarGazersListInteractorProtocol {
     
     func fetchStarGazers() async throws {
         let newStarGazers = try await fetchStarGazersFromRemote()
-        entity.increasePageNumber()
-        entity.appendStarGazers(newStarGazers)
+        
+        if newStarGazers.count > 0 {
+            entity.increasePageNumber()
+            entity.appendStarGazers(newStarGazers)
+        } else {
+            throw FetchError.noMoreStarGazers
+        }
     }
 }
 
@@ -35,15 +44,10 @@ extension StarGazersListInteractor: StarGazersListInteractorProtocol {
 
 private extension StarGazersListInteractor {
     func fetchStarGazersFromRemote() async throws -> [StarGazer] {
-        let data = try await httpClient.getData(
-            from: StarGazersEndpoint.get(
-                page: .init(
-                    pageNumber: entity.pageNumber,
-                    repoName: entity.repoName,
-                    repoOwner: entity.repoOwner
-                )
-            ).url
+        try await dataSource.fetchStarGazers(
+            pageNumber: entity.pageNumber,
+            repoName: entity.repoName,
+            repoOwner: entity.repoOwner
         )
-        return try StarGazersMapper.map(data)
     }
 }
