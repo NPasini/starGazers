@@ -14,9 +14,14 @@ class RepositorySelectionViewController: UIViewController {
     @IBOutlet weak var repoNameTextField: UITextField!
     @IBOutlet weak var repoOwnerTextField: UITextField!
     
-    private let viewModel: RepositorySelectorViewModelProtocol
+    private let presenter: RepositorySelectionPresenterProtocol
 
     private var activeTextField: UITextField?
+    
+    @IBAction func submitRepoDetails() {
+        activeTextField?.resignFirstResponder()
+        presenter.didTapOnConfirmButton()
+    }
     
     // MARK: - Life Cycle
     
@@ -40,20 +45,10 @@ class RepositorySelectionViewController: UIViewController {
         unregisterForKeyboardNotification()
     }
     
-    @IBAction func submitRepoDetails() {
-        activeTextField?.resignFirstResponder()
-        
-        if viewModel.isValid() {
-            navigateToGazerListPage()
-        } else {
-            showErrorMessage()
-        }
-    }
-    
     // MARK: Intializers
     
-    init?(coder: NSCoder, viewModel: RepositorySelectorViewModelProtocol) {
-        self.viewModel = viewModel
+    init?(coder: NSCoder, presenter: RepositorySelectionPresenterProtocol) {
+        self.presenter = presenter
         super.init(coder: coder)
     }
     
@@ -69,20 +64,17 @@ private extension RepositorySelectionViewController {
         confirmButton.layer.cornerRadius = 20
         repoDetailsView.layer.cornerRadius = 20
     }
-
-    func showErrorMessage() {
-        let alert = UIAlertController(title: "Error", message: viewModel.errorMessage(), preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .default) { _ in
-            alert.dismiss(animated: true, completion: nil)
+    
+    private func saveInsertedData(in textField: UITextField) {
+        guard let text = textField.text else { return }
+        
+        if textField == repoNameTextField {
+            presenter.setRepositoryName(text)
         }
-        alert.addAction(action)
-
-        navigationController?.present(alert, animated: true, completion: nil)
-    }
-
-    func navigateToGazerListPage() {
-//        let starGazerListViewModel =
-//        navigationService?.push(page: .starGazerList, with: starGazerListViewModel, using: navigationController)
+        
+        if textField == repoOwnerTextField {
+            presenter.setRepositoryOwner(text)
+        }
     }
 }
 
@@ -101,18 +93,6 @@ extension RepositorySelectionViewController: UITextFieldDelegate {
         saveInsertedData(in: textField)
         textField.resignFirstResponder()
         return true
-    }
-
-    private func saveInsertedData(in textField: UITextField) {
-        guard let text = textField.text else { return }
-        
-        if textField == repoNameTextField {
-            viewModel.setRepositoryName(text)
-        }
-        
-        if textField == repoOwnerTextField {
-            viewModel.setRepositoryOwner(text)
-        }
     }
 }
 
