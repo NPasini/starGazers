@@ -18,10 +18,7 @@ class StarGazersListViewController: UIViewController {
     private var starGazers: [StarGazer] = []
     
     //    private var isNetworkConnectionAvailable: Bool = true
-//    private(set) var compositeDisposable = CompositeDisposable()
     //    private var networkMonitorService: NetworkMonitorService? = AssemblerWrapper.shared.resolve(NetworkMonitorService.self)
-    
-//    private let viewModel: StarGazersListViewModelProtocol
     
     // MARK: - Lyfe Cycle
     
@@ -156,16 +153,6 @@ private extension StarGazersListViewController{
 //            }
 //        }
     }
-
-    func showAlert(title: String, message: String) {
-//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        let action = UIAlertAction(title: "Ok", style: .default) { _ in
-//            alert.dismiss(animated: true, completion: nil)
-//        }
-//        alert.addAction(action)
-//
-//        navigationController?.present(alert, animated: true, completion: nil)
-    }
 }
 
 // MARK: UITableViewDataSource
@@ -180,7 +167,6 @@ extension StarGazersListViewController: UITableViewDataSource {
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: StarGazerTableViewCell.identifier, for: indexPath) as? StarGazerTableViewCell {
             cell.configure(with: cellModel)
-//            cell.accessibilityIdentifier = "DataCell\(indexPath.row)"
             return cell
         } else {
             return UITableViewCell()

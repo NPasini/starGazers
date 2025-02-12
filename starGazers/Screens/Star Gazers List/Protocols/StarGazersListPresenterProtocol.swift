@@ -9,5 +9,6 @@ protocol StarGazersListPresenterProtocol: AnyObject {
     var title: String { get }
     
     func viewWillAppear()
+    func viewWillDisappear()
     func fetchNewStarGazers()
 }

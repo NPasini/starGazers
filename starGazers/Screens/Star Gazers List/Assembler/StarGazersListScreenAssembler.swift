@@ -13,11 +13,13 @@ struct StarGazersListScreenAssembler {
     private let httpClient: HTTPClientProtocol
     
     func assemble(repoName: String, repoOwner: String) -> UIViewController {
+        let router = StarGazersListRouter()
         let presenter = StarGazersListPresenter(
             interactor: StarGazersListInteractor(
                 entity: .init(repoName: repoName, repoOwner: repoOwner),
                 httpClient: httpClient
-            )
+            ),
+            router: router
         )
         
         let storyBoard = UIStoryboard(name: Self.starGazersListStoryboardName, bundle: .main)
@@ -30,6 +32,7 @@ struct StarGazersListScreenAssembler {
         }
         
         presenter.view = vc
+        router.setNavigationController(viewController?.navigationController)
         
         return vc
     }

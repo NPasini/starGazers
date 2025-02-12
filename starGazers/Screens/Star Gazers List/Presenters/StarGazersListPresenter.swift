@@ -6,7 +6,13 @@
 //
 
 class StarGazersListPresenter {
-    private var interactor: StarGazersListInteractorProtocol
+    static let alertTitle = "Error"
+    static let okButtonTitle = "Ok"
+    static let errorMessage = "Error while feetching data"
+    
+    private var task: Task<Void, Never>?
+    private let router: StarGazersListRouterProtocol
+    private let interactor: StarGazersListInteractorProtocol
     
     weak var view: StarGazersListViewProtocol?
     
@@ -14,7 +20,8 @@ class StarGazersListPresenter {
     
     // MARK: Initializers
     
-    init(interactor: StarGazersListInteractorProtocol) {
+    init(interactor: StarGazersListInteractorProtocol, router: StarGazersListRouterProtocol) {
+        self.router = router
         self.interactor = interactor
     }
 }
@@ -26,15 +33,27 @@ extension StarGazersListPresenter: StarGazersListPresenterProtocol {
         fetchNewStarGazers()
     }
     
+    func viewWillDisappear() {
+        task?.cancel()
+        task = nil
+    }
+    
     func fetchNewStarGazers() {
-        // Dispose?
-        Task {
+        task = Task {
             do {
                 try await interactor.fetchStarGazers()
                 view?.displayData(interactor.getStarGazers())
             } catch {
-                print("Error")
+                showErrorMessage()
             }
         }
+    }
+    
+    func showErrorMessage() {
+        router.showAlert(
+            title: StarGazersListPresenter.alertTitle,
+            message: StarGazersListPresenter.errorMessage,
+            buttonTitle: StarGazersListPresenter.okButtonTitle
+        )
     }
 }
