@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import SDWebImage
+import SDWebImage
 
 class StarGazerTableViewCell: UITableViewCell {
 
@@ -30,12 +30,12 @@ class StarGazerTableViewCell: UITableViewCell {
     func configure(with gazer: StarGazer) {
         nameLabel.text = gazer.name
 
-        if let urlString = gazer.imageURL {
-//            avatarImage.sd_setImage(with: imageURL) { [weak self] (image: UIImage?, error: Error?, cacheType: SDImageCacheType, imageURL: URL?) in
-//                guard error == nil else { return }
-//
-//                self?.avatarImage.image = image
-//            }
+        if let imageURL = gazer.imageURL {
+            avatarImage.sd_setImage(with: imageURL) { [weak self] (image: UIImage?, error: Error?, cacheType: SDImageCacheType, imageURL: URL?) in
+                guard let self, error == nil else { return }
+
+                avatarImage.image = image
+            }
         } else {
             avatarImage.image = UIImage()
         }
