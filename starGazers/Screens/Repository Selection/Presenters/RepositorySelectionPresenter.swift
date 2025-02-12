@@ -10,12 +10,12 @@ class RepositorySelectionPresenter {
     static let okButtonTitle = "Ok"
     static let errorMessage = "Please, insert both the repository name and the repository owner"
     
-    private var model: RepositorySelectorModel
+    private var model: RepositorySelectionModel
     private let router: RepositorySelectionRouterProtocol
     
     // MARK: Initializers
     
-    init(model: RepositorySelectorModel, router: RepositorySelectionRouterProtocol) {
+    init(model: RepositorySelectionModel, router: RepositorySelectionRouterProtocol) {
         self.model = model
         self.router = router
     }

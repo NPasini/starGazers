@@ -1,13 +1,13 @@
 //
-//  RepositorySelectorModel.swift
+//  RepositorySelectionModel.swift
 //  starGazers
 //
 //  Created by nicolo.pasini on 12/02/25.
 //
 
-struct RepositorySelectorModel {
-    private var repoName: String
-    private var repoOwner: String
+struct RepositorySelectionModel {
+    private(set) var repoName: String
+    private(set) var repoOwner: String
     
     mutating func setRepositoryName(_ name: String) {
         self.repoName = name
