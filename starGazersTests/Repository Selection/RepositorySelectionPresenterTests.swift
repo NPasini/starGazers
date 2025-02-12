@@ -90,7 +90,7 @@ fileprivate class RouterMock: RepositorySelectionRouterProtocol {
     var showAlertCallsCount = 0
     var navigateToStarGazersListScreenCallsCount = 0
     
-    func navigateToStarGazersListScreen() {
+    func navigateToStarGazersListScreen(repoName: String, repoOwner: String) {
         navigateToStarGazersListScreenCallsCount += 1
     }
     
