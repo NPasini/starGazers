@@ -6,26 +6,18 @@
 //
 
 class RepositorySelectionPresenter {
+    static let alertTitle = "Error"
     static let okButtonTitle = "Ok"
     static let errorMessage = "Please, insert both the repository name and the repository owner"
     
     private var model: RepositorySelectorModel
-
-//    func showErrorMessage() {
-//        let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-//        alert.addAction(
-//            UIAlertAction(title: okButtonTitle, style: .default) { _ in
-//                alert.dismiss(animated: true, completion: nil)
-//            }
-//        )
-//
-//        navigationController?.present(alert, animated: true, completion: nil)
-//    }
+    private let router: RepositorySelectionRouterProtocol
     
     // MARK: Initializers
     
-    init(model: RepositorySelectorModel) {
+    init(model: RepositorySelectorModel, router: RepositorySelectionRouterProtocol) {
         self.model = model
+        self.router = router
     }
 }
 
@@ -40,9 +32,15 @@ extension RepositorySelectionPresenter: RepositorySelectionPresenterProtocol {
     
     func didTapOnConfirmButton() {
         if model.isValid() {
-//            navigateToGazerListPage()
+            router.navigateToStarGazersListScreen()
         } else {
-//            showErrorMessage()
+            showErrorMessage()
         }
+    }
+}
+
+private extension RepositorySelectionPresenter {
+    func showErrorMessage() {
+        router.showAlert(title: Self.alertTitle, message: Self.errorMessage, buttonTitle: Self.okButtonTitle)
     }
 }

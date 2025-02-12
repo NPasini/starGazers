@@ -8,12 +8,27 @@
 import UIKit
 
 struct RepositorySelectionScreenAssembler {
-    static func assemble(coder: NSCoder) -> RepositorySelectionViewController {
-        let presenter = RepositorySelectionPresenter(model: .init())
-        guard let viewController = RepositorySelectionViewController(coder: coder, presenter: presenter) else {
+    private static let repoSelectioStoryboardName = "RepositorySelection"
+    
+    static func assemble() -> UIViewController {
+        let router = RepositorySelectionRouter()
+        let presenter = RepositorySelectionPresenter(
+            model: .init(),
+            router: router
+        )
+        
+        let repoSelectionStoryboard = UIStoryboard(name: repoSelectioStoryboardName, bundle: .main)
+        let viewController = repoSelectionStoryboard.instantiateInitialViewController {
+            RepositorySelectionViewController(coder: $0, presenter: presenter)
+        }
+        
+        guard let vc = viewController else {
             fatalError("Not able to instatiate correct view controller")
         }
         
-        return viewController
+        let navigationController = UINavigationController(rootViewController: vc)
+        router.setNavigationController(navigationController)
+        
+        return navigationController
     }
 }

@@ -10,8 +10,6 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
-    private static let repoSelectioStoryboardName = "RepositorySelection"
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         
@@ -20,9 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        let repoSelectionStoryboard = UIStoryboard(name: Self.repoSelectioStoryboardName, bundle: .main)
-        window?.rootViewController = repoSelectionStoryboard.instantiateInitialViewController { RepositorySelectionScreenAssembler.assemble(coder: $0)
-        }
+        window?.rootViewController = RepositorySelectionScreenAssembler.assemble()
         window?.makeKeyAndVisible()
     }
 }
