@@ -6,6 +6,6 @@
 //
 
 protocol RepositorySelectionRouterProtocol {
-    func navigateToStarGazersListScreen()
     func showAlert(title: String, message: String, buttonTitle: String)
+    func navigateToStarGazersListScreen(repoName: String, repoOwner: String)
 }

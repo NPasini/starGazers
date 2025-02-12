@@ -10,14 +10,16 @@ import UIKit
 struct RepositorySelectionScreenAssembler {
     private static let repoSelectioStoryboardName = "RepositorySelection"
     
-    static func assemble() -> UIViewController {
-        let router = RepositorySelectionRouter()
+    private let httpClient: HTTPClientProtocol
+    
+    func assemble() -> UIViewController {
+        let router = RepositorySelectionRouter(httpClient: httpClient)
         let presenter = RepositorySelectionPresenter(
             model: .init(),
             router: router
         )
         
-        let repoSelectionStoryboard = UIStoryboard(name: repoSelectioStoryboardName, bundle: .main)
+        let repoSelectionStoryboard = UIStoryboard(name: Self.repoSelectioStoryboardName, bundle: .main)
         let viewController = repoSelectionStoryboard.instantiateInitialViewController {
             RepositorySelectionViewController(coder: $0, presenter: presenter)
         }
@@ -30,5 +32,11 @@ struct RepositorySelectionScreenAssembler {
         router.setNavigationController(navigationController)
         
         return navigationController
+    }
+    
+    // MARK: Initializers
+    
+    init(httpClient: HTTPClientProtocol) {
+        self.httpClient = httpClient
     }
 }

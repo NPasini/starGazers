@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
+    private lazy var httpClient: HTTPClientProtocol = URLSessionHTTPClient()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         
@@ -18,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        window?.rootViewController = RepositorySelectionScreenAssembler.assemble()
+        window?.rootViewController = RepositorySelectionScreenAssembler(httpClient: httpClient).assemble()
         window?.makeKeyAndVisible()
     }
 }

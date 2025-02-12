@@ -8,17 +8,27 @@
 import UIKit
 
 class RepositorySelectionRouter {
-    private var navigationController: UINavigationController?
+    private let httpClient: HTTPClientProtocol
+    private weak var navigationController: UINavigationController?
     
     func setNavigationController(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
+    
+    // MARK: Initializers
+    
+    init(httpClient: HTTPClientProtocol) {
+        self.httpClient = httpClient
+    }
 }
  
 extension RepositorySelectionRouter: RepositorySelectionRouterProtocol {
-    func navigateToStarGazersListScreen() {
-        let viewController = UIViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+    func navigateToStarGazersListScreen(repoName: String, repoOwner: String) {
+        let assembler = StarGazersListScreenAssembler(httpClient: httpClient)
+        navigationController?.pushViewController(
+            assembler.assemble(repoName: repoName, repoOwner: repoOwner),
+            animated: true
+        )
     }
 
     func showAlert(title: String, message: String, buttonTitle: String) {

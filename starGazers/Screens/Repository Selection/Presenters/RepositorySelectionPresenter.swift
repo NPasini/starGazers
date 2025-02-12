@@ -32,7 +32,10 @@ extension RepositorySelectionPresenter: RepositorySelectionPresenterProtocol {
     
     func didTapOnConfirmButton() {
         if model.isValid() {
-            router.navigateToStarGazersListScreen()
+            router.navigateToStarGazersListScreen(
+                repoName: model.repoName,
+                repoOwner: model.repoOwner
+            )
         } else {
             showErrorMessage()
         }
