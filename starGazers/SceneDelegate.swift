@@ -20,9 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        let viewModel = RepositorySelectorViewModel()
         let repoSelectionStoryboard = UIStoryboard(name: Self.repoSelectioStoryboardName, bundle: .main)
-        window?.rootViewController = repoSelectionStoryboard.instantiateInitialViewController { RepositorySelectionViewController(coder: $0, viewModel: viewModel) }
+        window?.rootViewController = repoSelectionStoryboard.instantiateInitialViewController { RepositorySelectionScreenAssembler.assemble(coder: $0)
+        }
         window?.makeKeyAndVisible()
     }
 }
