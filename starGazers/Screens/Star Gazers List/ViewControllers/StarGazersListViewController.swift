@@ -13,9 +13,6 @@ class StarGazersListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageViewHeightConstraint: NSLayoutConstraint!
     
-    private let messageViewHeight: CGFloat = 40
-    private let animationDuration: TimeInterval = 0.3
-    
     private let presenter: StarGazersListPresenterProtocol
     
     private var starGazers: [StarGazer] = []
@@ -83,6 +80,11 @@ extension StarGazersListViewController: StarGazersListViewProtocol {
 // MARK: Private Methods
 
 private extension StarGazersListViewController{
+    enum Constant {
+        static let messageViewHeight: CGFloat = 40
+        static let animationDuration: TimeInterval = 0.3
+    }
+    
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self

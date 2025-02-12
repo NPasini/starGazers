@@ -5,27 +5,16 @@
 //  Created by nicolo.pasini on 12/02/25.
 //
 
-protocol StarGazersListPresenterProtocol: AnyObject {
-    var title: String { get }
-    
-    func viewWillAppear()
-    func fetchNewStarGazers()
-//    func getStarGazers() -> [StarGazer]
-}
-
-protocol StarGazersListViewProtocol: AnyObject {
-    func displayData(_ starGazers: [StarGazer])
-}
-
 class StarGazersListPresenter {
-    private var interactor: StarGazersListInteractor
+    private var interactor: StarGazersListInteractorProtocol
+    
     weak var view: StarGazersListViewProtocol?
     
     var title: String { "Star Gazers" }
     
     // MARK: Initializers
     
-    init(interactor: StarGazersListInteractor) {
+    init(interactor: StarGazersListInteractorProtocol) {
         self.interactor = interactor
     }
 }
@@ -36,10 +25,6 @@ extension StarGazersListPresenter: StarGazersListPresenterProtocol {
     func viewWillAppear() {
         fetchNewStarGazers()
     }
-    
-//    func getStarGazers() -> [StarGazer] {
-//        interactor.getStarGazers()
-//    }
     
     func fetchNewStarGazers() {
         // Dispose?
