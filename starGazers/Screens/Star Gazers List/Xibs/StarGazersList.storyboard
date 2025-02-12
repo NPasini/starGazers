@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y00-sq-Bou">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Star Gazers List View Controller-->
+        <scene sceneID="GjV-0t-rpH">
+            <objects>
+                <viewController storyboardIdentifier="StarGazersListViewController" id="Y00-sq-Bou" customClass="StarGazersListViewController" customModule="gazers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9IW-K1-cwY">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V9n-tJ-Oz7">
+                                <rect key="frame" x="0.0" y="99" width="393" height="719"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <sections/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="gazersTableView"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKE-dR-aie">
+                                <rect key="frame" x="0.0" y="59" width="393" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Messsage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdS-5T-rDk">
+                                        <rect key="frame" x="15" y="9.6666666666666732" width="363" height="20.666666666666671"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="messageLabel"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="messageView"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="WdS-5T-rDk" secondAttribute="trailing" constant="15" id="DLc-9I-v1t"/>
+                                    <constraint firstItem="WdS-5T-rDk" firstAttribute="leading" secondItem="nKE-dR-aie" secondAttribute="leading" constant="15" id="iDZ-Bw-WSr"/>
+                                    <constraint firstAttribute="height" constant="40" id="k2c-XW-r3H"/>
+                                    <constraint firstItem="WdS-5T-rDk" firstAttribute="centerY" secondItem="nKE-dR-aie" secondAttribute="centerY" id="v32-Mg-5Kp"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EQy-6m-jb8"/>
+                        <color key="backgroundColor" name="BackLightGrey"/>
+                        <constraints>
+                            <constraint firstItem="V9n-tJ-Oz7" firstAttribute="top" secondItem="nKE-dR-aie" secondAttribute="bottom" id="1tk-tH-saw"/>
+                            <constraint firstItem="EQy-6m-jb8" firstAttribute="bottom" secondItem="V9n-tJ-Oz7" secondAttribute="bottom" id="6iV-uZ-i4q"/>
+                            <constraint firstItem="nKE-dR-aie" firstAttribute="leading" secondItem="EQy-6m-jb8" secondAttribute="leading" id="R5I-ZF-ofg"/>
+                            <constraint firstItem="V9n-tJ-Oz7" firstAttribute="leading" secondItem="EQy-6m-jb8" secondAttribute="leading" id="WzD-6P-djg"/>
+                            <constraint firstItem="EQy-6m-jb8" firstAttribute="trailing" secondItem="nKE-dR-aie" secondAttribute="trailing" id="bQj-l4-sAt"/>
+                            <constraint firstItem="EQy-6m-jb8" firstAttribute="trailing" secondItem="V9n-tJ-Oz7" secondAttribute="trailing" id="gFE-HL-1Fp"/>
+                            <constraint firstItem="nKE-dR-aie" firstAttribute="top" secondItem="EQy-6m-jb8" secondAttribute="top" id="jgb-nn-0dy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="WdS-5T-rDk" id="4xh-mL-UrM"/>
+                        <outlet property="messageView" destination="nKE-dR-aie" id="odf-oI-hDs"/>
+                        <outlet property="messageViewHeightConstraint" destination="k2c-XW-r3H" id="bsd-4N-sbT"/>
+                        <outlet property="tableView" destination="V9n-tJ-Oz7" id="Dfq-VS-YIz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V8Y-73-RKb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2670" y="62"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="BackLightGrey">
+            <color red="0.28499999642372131" green="0.28499999642372131" blue="0.30899998545646667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
