@@ -8,8 +8,6 @@
 import UIKit
 
 struct RepositorySelectionScreenAssembler {
-    private static let repoSelectioStoryboardName = "RepositorySelection"
-    
     private let httpClient: HTTPClientProtocol
     
     func assemble() -> UIViewController {
@@ -19,7 +17,7 @@ struct RepositorySelectionScreenAssembler {
             router: router
         )
         
-        let repoSelectionStoryboard = UIStoryboard(name: Self.repoSelectioStoryboardName, bundle: .main)
+        let repoSelectionStoryboard = UIStoryboard(name: Constant.repoSelectioStoryboardName, bundle: .main)
         let viewController = repoSelectionStoryboard.instantiateInitialViewController {
             RepositorySelectionViewController(coder: $0, presenter: presenter)
         }
@@ -38,5 +36,13 @@ struct RepositorySelectionScreenAssembler {
     
     init(httpClient: HTTPClientProtocol) {
         self.httpClient = httpClient
+    }
+}
+
+// MARK: RepositorySelectionScreenAssembler.Constant
+
+extension RepositorySelectionScreenAssembler {
+    enum Constant {
+        static let repoSelectioStoryboardName = "RepositorySelection"
     }
 }

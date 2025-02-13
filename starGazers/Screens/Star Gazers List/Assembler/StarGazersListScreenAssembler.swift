@@ -8,8 +8,6 @@
 import UIKit
 
 struct StarGazersListScreenAssembler {
-    private static let starGazersListStoryboardName = "StarGazersList"
-    
     private let httpClient: HTTPClientProtocol
     private let navigationController: UINavigationController
     
@@ -25,7 +23,7 @@ struct StarGazersListScreenAssembler {
             router: router
         )
         
-        let storyBoard = UIStoryboard(name: Self.starGazersListStoryboardName, bundle: .main)
+        let storyBoard = UIStoryboard(name: Constant.starGazersListStoryboardName, bundle: .main)
         let viewController = storyBoard.instantiateInitialViewController {
             StarGazersListViewController(coder: $0, presenter: presenter)
         }
@@ -45,5 +43,13 @@ struct StarGazersListScreenAssembler {
     init(httpClient: HTTPClientProtocol, navigationController: UINavigationController) {
         self.httpClient = httpClient
         self.navigationController = navigationController
+    }
+}
+
+// MARK: StarGazersListScreenAssembler.Constant
+
+extension StarGazersListScreenAssembler {
+    enum Constant {
+        static let starGazersListStoryboardName = "StarGazersList"
     }
 }

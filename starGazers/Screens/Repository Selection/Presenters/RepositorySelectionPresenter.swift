@@ -6,10 +6,6 @@
 //
 
 class RepositorySelectionPresenter {
-    static let alertTitle = "Error"
-    static let okButtonTitle = "Ok"
-    static let errorMessage = "Please, insert both the repository name and the repository owner"
-    
     private var model: RepositorySelectionModel
     private let router: RepositorySelectionRouterProtocol
     
@@ -42,8 +38,16 @@ extension RepositorySelectionPresenter: RepositorySelectionPresenterProtocol {
     }
 }
 
+// MARK: Private Methods
+
 private extension RepositorySelectionPresenter {
+    enum Constant {
+        static let alertTitle = "Error"
+        static let okButtonTitle = "Ok"
+        static let errorMessage = "Please, insert both the repository name and the repository owner"
+    }
+    
     func showErrorMessage() {
-        router.showAlert(title: Self.alertTitle, message: Self.errorMessage, buttonTitle: Self.okButtonTitle)
+        router.showAlert(title: Constant.alertTitle, message: Constant.errorMessage, buttonTitle: Constant.okButtonTitle)
     }
 }
