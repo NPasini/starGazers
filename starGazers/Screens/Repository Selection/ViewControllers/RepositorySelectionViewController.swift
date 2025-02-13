@@ -37,7 +37,6 @@ class RepositorySelectionViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -60,9 +59,13 @@ class RepositorySelectionViewController: UIViewController {
 // MARK: Private Methods
 
 private extension RepositorySelectionViewController {
+    enum Constant {
+        static let cornerRadius: CGFloat = 20
+    }
+    
     func setupLayout() {
-        confirmButton.layer.cornerRadius = 20
-        repoDetailsView.layer.cornerRadius = 20
+        confirmButton.layer.cornerRadius = Constant.cornerRadius
+        repoDetailsView.layer.cornerRadius = Constant.cornerRadius
     }
     
     private func saveInsertedData(in textField: UITextField) {
@@ -127,7 +130,7 @@ private extension RepositorySelectionViewController {
     }
     
     func scrollToDisplayHiddenTextFieldIfNeeded(keyboardSize: CGRect) {
-        var screenFrame = self.view.frame
+        var screenFrame = view.frame
         screenFrame.size.height -= keyboardSize.height;
         if let activeField = activeTextField, !screenFrame.contains(activeField.frame.origin) {
             scrollView.scrollRectToVisible(activeField.frame, animated: true)
