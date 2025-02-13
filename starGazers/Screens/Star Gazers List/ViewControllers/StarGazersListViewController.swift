@@ -137,13 +137,7 @@ extension StarGazersListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Use strategy
-        if let cell = tableView.dequeueReusableCell(withIdentifier: StarGazerTableViewCell.identifier, for: indexPath) as? StarGazerTableViewCell {
-            cell.configure(with: starGazers[indexPath.row])
-            return cell
-        } else {
-            return UITableViewCell()
-        }
+        CellFactory.makeCell(in: tableView, forRowAt: indexPath, model: starGazers[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
