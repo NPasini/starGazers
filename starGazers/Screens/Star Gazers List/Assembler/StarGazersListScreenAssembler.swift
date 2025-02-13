@@ -32,7 +32,8 @@ struct StarGazersListScreenAssembler {
             fatalError("Not able to instatiate correct view controller")
         }
         
-        presenter.view = vc
+        let starGazersListViewController = StarGazersListViewControllerMainQueueDecorator(decoratee: vc)
+        presenter.setView(starGazersListViewController)
         router.setNavigationController(navigationController)
         
         return vc

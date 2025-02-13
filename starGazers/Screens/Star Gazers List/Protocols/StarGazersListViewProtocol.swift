@@ -6,5 +6,9 @@
 //
 
 protocol StarGazersListViewProtocol: AnyObject {
+    func showSpinner()
+    func hideSpinner()
+    func setHasReachEndOfData()
+    func displayMessage(text: String)
     func displayData(_ starGazers: [StarGazer])
 }

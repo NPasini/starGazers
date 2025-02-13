@@ -15,10 +15,31 @@ class StarGazersListViewController: UIViewController {
     
     private let presenter: StarGazersListPresenterProtocol
     
+    private var hasReachedLast: Bool = false
     private var starGazers: [StarGazer] = []
     
-    //    private var isNetworkConnectionAvailable: Bool = true
-    //    private var networkMonitorService: NetworkMonitorService? = AssemblerWrapper.shared.resolve(NetworkMonitorService.self)
+    private lazy var tableFooterView: UIView = {
+        let spinnerView = UIActivityIndicatorView(style: .large)
+        let footerView = UIView(
+            frame: CGRect(
+                x: 0,
+                y: 0,
+                width: tableView.frame.width,
+                height: Constant.tableFooterViewHeight
+            )
+        )
+
+        spinnerView.translatesAutoresizingMaskIntoConstraints = false
+        spinnerView.startAnimating()
+        footerView.addSubview(spinnerView)
+
+        NSLayoutConstraint.activate([
+            spinnerView.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
+            spinnerView.centerYAnchor.constraint(equalTo: footerView.centerYAnchor)
+        ])
+        
+        return footerView
+    }()
     
     // MARK: - Lyfe Cycle
     
@@ -27,30 +48,18 @@ class StarGazersListViewController: UIViewController {
         
         configureTableView()
         configureNavigationBar()
-        messageViewHeightConstraint.constant = 0
         setTitle(presenter.title, color: UIColor.frontOrange)
-        
-//        compositeDisposable += networkMonitorService?.isNetworkAvailable.producer.startWithValues({ [weak self] (isAvailable: Bool?) in
-//            if let connectionAvailable = isAvailable {
-//                self?.isNetworkConnectionAvailable = connectionAvailable
-//                if !connectionAvailable {
-//                    self?.showMessageView(message: "Network not available")
-//                } else {
-//                    self?.hideMessageView()
-//                }
-//            }
-//        })
-        
-//        compositeDisposable += gazersViewModel.errorSignal.producer.filter({ $0 == true }).observe(on: UIScheduler()).on(value: { [weak self] _ in
-//            self?.showAlert(title: "Error", message: self?.viewModel.errorMessage() ?? "")
-//        }).start()
+        messageViewHeightConstraint.constant = Constant.collapsedMessageViewHeight
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         presenter.viewWillAppear()
-//        gazersViewModel.getStarGazers()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.viewWillDisappear()
     }
     
     // MARK: Initializers
@@ -68,8 +77,27 @@ class StarGazersListViewController: UIViewController {
 extension StarGazersListViewController: StarGazersListViewProtocol {
     func displayData(_ starGazers: [StarGazer]) {
         self.starGazers = starGazers
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+        tableView.reloadData()
+    }
+    
+    func showSpinner() {
+        tableView.tableFooterView = self.tableFooterView
+    }
+        
+    func hideSpinner() {
+        tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
+    func setHasReachEndOfData() {
+        hasReachedLast = true
+    }
+    
+    func displayMessage(text: String) {
+        messageLabel.text = text
+        messageViewHeightConstraint.constant = Constant.expandedMessageViewHeight
+
+        UIView.animate(withDuration: Constant.animationDuration) {
+            self.view.layoutIfNeeded()
         }
     }
 }
@@ -78,80 +106,26 @@ extension StarGazersListViewController: StarGazersListViewProtocol {
 
 private extension StarGazersListViewController{
     enum Constant {
-        static let messageViewHeight: CGFloat = 40
+        static let tableRowHeight: CGFloat = 80
+        static let tableFooterViewHeight: CGFloat = 60
         static let animationDuration: TimeInterval = 0.3
+        static let expandedMessageViewHeight: CGFloat = 40
+        static let collapsedMessageViewHeight: CGFloat = 0
     }
     
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.prefetchDataSource = self
 
-        let spinnerView = UIActivityIndicatorView(style: .large)
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
-
-        spinnerView.translatesAutoresizingMaskIntoConstraints = false
-        spinnerView.startAnimating()
-        footerView.addSubview(spinnerView)
-
-        NSLayoutConstraint.activate([
-            spinnerView.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
-            spinnerView.centerYAnchor.constraint(equalTo: footerView.centerYAnchor)
-        ])
-
-        tableView.rowHeight = 80
         tableView.backgroundColor = .clear
-        tableView.tableFooterView = footerView
+        tableView.tableFooterView = tableFooterView
+        tableView.rowHeight = Constant.tableRowHeight
         tableView.register(viewType: StarGazerTableViewCell.self)
-
-//        compositeDisposable += tableView.reactive.reloadData <~ gazersViewModel.gazersDataSource.signal.map({ [weak self] (gazers: [Gazer]) in
-//            OSLogger.uiLog(message: "Reloading TableView", access: .public, type: .debug)
-//            if gazers.count == 0, let isConnectionAvailable = self?.isNetworkConnectionAvailable, isConnectionAvailable {
-//                DispatchQueue.main.async {
-//                    self?.showAlert(title: "No Gazers", message: "There are no gazers for this repository")
-//                }
-//            }
-//        })
-
-//        compositeDisposable += spinnerView.reactive.isAnimating <~ gazersViewModel.stopFetchingData.producer.map({ [weak self] (stopFetching: Bool) -> Bool in
-//            OSLogger.uiLog(message: "Spinner view is spinning: \(!stopFetching)", access: .public, type: .debug)
-//
-//            DispatchQueue.main.async {
-//                if stopFetching {
-//                    self?.tableView.tableFooterView = UIView(frame: .zero)
-//                } else {
-//                    self?.tableView.tableFooterView = footerView
-//                }
-//            }
-//
-//            return !stopFetching
-//        })
     }
 
     func configureNavigationBar() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         customizeNavigationBar(backgroundColor: UIColor.backGrey, backButtonColor: UIColor.lightText)
-    }
-
-    func showMessageView(message: String) {
-//        DispatchQueue.main.async {
-//            self.messageLabel.text = message
-//            self.messageViewHeightConstraint.constant = self.messageViewHeight
-//
-//            UIView.animate(withDuration: self.animationDuration) {
-//                self.view.layoutIfNeeded()
-//            }
-//        }
-    }
-
-    func hideMessageView() {
-//        DispatchQueue.main.async {
-//            self.messageViewHeightConstraint.constant = 0
-//
-//            UIView.animate(withDuration: self.animationDuration) {
-//                self.view.layoutIfNeeded()
-//            }
-//        }
     }
 }
 
@@ -163,32 +137,22 @@ extension StarGazersListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellModel = starGazers[indexPath.row]
-
+        // Use strategy
         if let cell = tableView.dequeueReusableCell(withIdentifier: StarGazerTableViewCell.identifier, for: indexPath) as? StarGazerTableViewCell {
-            cell.configure(with: cellModel)
+            cell.configure(with: starGazers[indexPath.row])
             return cell
         } else {
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if !hasReachedLast, indexPath.row == (starGazers.count - 1) {
+            presenter.fetchNewStarGazers()
         }
     }
 }
 
 // MARK: UITableViewDelegate
 
-extension StarGazersListViewController: UITableViewDelegate {
-}
-
-// MARK: UITableViewDataSourcePrefetching
-
-extension StarGazersListViewController: UITableViewDataSourcePrefetching {
-    private func isLoadingCell(at indexPath: IndexPath) -> Bool {
-        return indexPath.row >= (starGazers.count - 1)
-    }
-
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        if indexPaths.contains(where: isLoadingCell(at:)) {
-            presenter.fetchNewStarGazers()
-        }
-    }
-}
+extension StarGazersListViewController: UITableViewDelegate {}
