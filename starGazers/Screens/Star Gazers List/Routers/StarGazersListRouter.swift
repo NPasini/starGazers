@@ -24,8 +24,6 @@ extension StarGazersListRouter: StarGazersListRouterProtocol {
             }
         )
 
-        DispatchQueue.main.async {
-            self.navigationController?.present(alert, animated: true, completion: nil)
-        }
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
 }
