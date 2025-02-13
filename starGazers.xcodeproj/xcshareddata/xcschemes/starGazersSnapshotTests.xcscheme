@@ -19,17 +19,6 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "74F089FA2D5BC87500ECD714"
-               BuildableName = "starGazersTests.xctest"
-               BlueprintName = "starGazersTests"
-               ReferencedContainer = "container:starGazers.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "7411F5382D5E07D50044AD14"
                BuildableName = "starGazersSnapshotTests.xctest"
                BlueprintName = "starGazersSnapshotTests"

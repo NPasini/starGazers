@@ -57,6 +57,17 @@
                ReferencedContainer = "container:starGazers.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7411F5382D5E07D50044AD14"
+               BuildableName = "starGazersSnapshotTests.xctest"
+               BlueprintName = "starGazersSnapshotTests"
+               ReferencedContainer = "container:starGazers.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
