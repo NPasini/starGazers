@@ -35,24 +35,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		7411F5462D5E08320044AD14 /* Exceptions for "starGazersSnapshotTests" folder in "starGazers" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Repository Selection/RepositorySelectionScreenSnapshotTests.swift",
-				"Utils/UIViewController+SnapshotConfiguration.swift",
-				"Utils/XCTestCase+Snapshot.swift",
-			);
-			target = 74F089E92D5BC87300ECD714 /* starGazers */;
-		};
-		7411F5482D5E08360044AD14 /* Exceptions for "starGazersSnapshotTests" folder in "starGazersSnapshotTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Repository Selection/RepositorySelectionScreenSnapshotTests.swift",
-				"Utils/UIViewController+SnapshotConfiguration.swift",
-				"Utils/XCTestCase+Snapshot.swift",
-			);
-			target = 7411F5382D5E07D50044AD14 /* starGazersSnapshotTests */;
-		};
 		74F08AAC2D5BF72500ECD714 /* Exceptions for "starGazers" folder in "starGazers" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -65,10 +47,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7411F5412D5E07FF0044AD14 /* starGazersSnapshotTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				7411F5462D5E08320044AD14 /* Exceptions for "starGazersSnapshotTests" folder in "starGazers" target */,
-				7411F5482D5E08360044AD14 /* Exceptions for "starGazersSnapshotTests" folder in "starGazersSnapshotTests" target */,
-			);
 			path = starGazersSnapshotTests;
 			sourceTree = "<group>";
 		};
@@ -150,6 +128,9 @@
 			dependencies = (
 				7411F53B2D5E07D50044AD14 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				7411F5412D5E07FF0044AD14 /* starGazersSnapshotTests */,
+			);
 			name = starGazersSnapshotTests;
 			packageProductDependencies = (
 			);
@@ -170,7 +151,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				7411F5412D5E07FF0044AD14 /* starGazersSnapshotTests */,
 				74F089EC2D5BC87300ECD714 /* starGazers */,
 			);
 			name = starGazers;
