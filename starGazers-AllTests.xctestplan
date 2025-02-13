@@ -15,6 +15,13 @@
     {
       "target" : {
         "containerPath" : "container:starGazers.xcodeproj",
+        "identifier" : "7411F5382D5E07D50044AD14",
+        "name" : "starGazersSnapshotTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:starGazers.xcodeproj",
         "identifier" : "74F089FA2D5BC87500ECD714",
         "name" : "starGazersTests"
       }

@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7411F5342D5E07330044AD14 /* starGazers-UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "starGazers-UnitTests.xctestplan"; sourceTree = "<group>"; };
+		7411F5342D5E07330044AD14 /* starGazers-AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "starGazers-AllTests.xctestplan"; sourceTree = "<group>"; };
 		7411F5392D5E07D50044AD14 /* starGazersSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = starGazersSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74F089EA2D5BC87300ECD714 /* starGazers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = starGazers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74F089FB2D5BC87500ECD714 /* starGazersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = starGazersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +116,7 @@
 		74F089E12D5BC87300ECD714 = {
 			isa = PBXGroup;
 			children = (
-				7411F5342D5E07330044AD14 /* starGazers-UnitTests.xctestplan */,
+				7411F5342D5E07330044AD14 /* starGazers-AllTests.xctestplan */,
 				74F089EB2D5BC87300ECD714 /* Products */,
 				74F089EC2D5BC87300ECD714 /* starGazers */,
 				7411F5412D5E07FF0044AD14 /* starGazersSnapshotTests */,
