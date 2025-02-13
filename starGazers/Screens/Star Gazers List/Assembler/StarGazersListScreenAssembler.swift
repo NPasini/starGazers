@@ -14,7 +14,9 @@ struct StarGazersListScreenAssembler {
     private let navigationController: UINavigationController
     
     func assemble(repoName: String, repoOwner: String) -> UIViewController {
-        let router = StarGazersListRouter()
+        let router = StarGazersListRouterMainThreadDecorator(
+            decoratee: StarGazersListRouter()
+        )
         let presenter = StarGazersListPresenter(
             interactor: StarGazersListInteractor(
                 entity: .init(repoName: repoName, repoOwner: repoOwner),
