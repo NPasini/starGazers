@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "FD775887-573C-48A3-A7F7-AC28B1D2D4E3",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:starGazers.xcodeproj",
+        "identifier" : "74F089FA2D5BC87500ECD714",
+        "name" : "starGazersTests"
+      }
+    }
+  ],
+  "version" : 1
+}
