@@ -24,14 +24,20 @@ class RepositorySelectionRouter {
  
 extension RepositorySelectionRouter: RepositorySelectionRouterProtocol {
     func navigateToStarGazersListScreen(repoName: String, repoOwner: String) {
-        let assembler = StarGazersListScreenAssembler(httpClient: httpClient)
-        navigationController?.pushViewController(
+        guard let navigationController else { return }
+        let assembler = StarGazersListScreenAssembler(
+            httpClient: httpClient,
+            navigationController: navigationController
+        )
+        
+        navigationController.pushViewController(
             assembler.assemble(repoName: repoName, repoOwner: repoOwner),
             animated: true
         )
     }
 
     func showAlert(title: String, message: String, buttonTitle: String) {
+        guard let navigationController else { return }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(
             UIAlertAction(title: buttonTitle, style: .default) { _ in
@@ -39,6 +45,6 @@ extension RepositorySelectionRouter: RepositorySelectionRouterProtocol {
             }
         )
 
-        navigationController?.present(alert, animated: true, completion: nil)
+        navigationController.present(alert, animated: true, completion: nil)
     }
 }
